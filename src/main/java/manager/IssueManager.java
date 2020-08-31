@@ -15,20 +15,23 @@ public class IssueManager {
         this.repository = repository;
     }
 
-    public void issueAdd(Issue issue){
+    public void issueAdd(Issue issue) {
         repository.save(issue);
     }
-    public Collection<Issue> getAllIssues(){
+
+    public Collection<Issue> getAllIssues() {
         return repository.findAll();
     }
 
     public Collection<Issue> findAllOpen() {
-    return repository.findAllOpen();
+        return repository.findAllOpen();
     }
+
     public Collection<Issue> findAllClosed() {
         return repository.findAllClosed();
     }
-    public void openIssue(int id){
+
+    public void openIssue(int id) {
         repository.open(id);
     }
 
@@ -36,45 +39,52 @@ public class IssueManager {
         repository.closed(id);
     }
 
+    public Predicate<Issue> getFilterByAuthor(String author) {
+        return p -> p.getAuthor().equalsIgnoreCase(author);
+    }
+
+    public Predicate<Issue> getFilterByLabel(String labels) {
+        return p -> p.getLabel().equalsIgnoreCase(labels);
+    }
+
+    public Predicate<Issue> getFilterByAssignee(String assignee) {
+        return p -> p.getAssignee().equalsIgnoreCase(assignee);
+    }
 
 
-    public Predicate<Issue> getByAuthor(String author) {
-        return repository.getByAuthor(author);
+//    public List<Issue> filterBy(List<Issue> issues, Predicate<Issue> predicate) {
+//        return issues.stream()
+//                .filter(predicate)
+//                .collect(Collectors.<Issue>toList());
+//    }
+//
+//    public Set<Issue> filterByLabels(List<Issue> issues, Predicate<Issue> predicate) {
+//        Set<Issue> filteredList = new HashSet<>();
+//        for (Issue i : issues) {
+//            if (predicate.test(i)) {
+//                filteredList.add(i);
+//            }
+//        }
+//        return filteredList;
+//    }
+    public List<Issue> filterByAuthor(String author) {
+        return filter(getFilterByAuthor(author));
     }
-    public Predicate<Issue> getByLabel(String labels) {
-        return repository.getByLabel(labels);
+    public List<Issue> filterByLabel(String label) {
+        return filter(getFilterByLabel(label));
     }
-    public Predicate<Issue> getByAssignee(String assignee) {
-        return repository.getByAssignee(assignee);
+    public List<Issue> filterByAssignee(String assignee) {
+        return filter(getFilterByAssignee(assignee));
     }
-    public static List<Issue> filterByAuthor(List<Issue>issues, Predicate<Issue> predicate) {
-        return issues.stream()
+
+
+
+
+    public List<Issue> filter(Predicate<Issue> predicate) {
+        return getAllIssues().stream()
                 .filter(predicate)
                 .collect(Collectors.<Issue>toList());
     }
-    public static Set<Issue> filterByLabels(List<Issue>issues, Predicate<Issue> predicate) {
-        Set<Issue> filteredList = new HashSet<>();
-        for(Issue i:issues){
-            if(predicate.test(i)){
-                filteredList.add(i);
-            }
-        }
-        return filteredList;
-    }
-    public static Set<Issue> filterByAssignee(List<Issue>issues, Predicate<Issue> predicate) {
-        Set<Issue> filteredList = new HashSet<>();
-        for(Issue i:issues){
-            if(predicate.test(i)){
-                filteredList.add(i);
-            }
-        }
-        return filteredList;
-    }
-
-
-
-
-
 
 
 }

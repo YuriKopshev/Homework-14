@@ -3,7 +3,7 @@ package domain;
 
 import java.util.Date;
 
-public class Issue implements Comparable<Issue>  {
+public class Issue implements Comparable<Issue> {
     private int id;
     private String author;
     private String label;

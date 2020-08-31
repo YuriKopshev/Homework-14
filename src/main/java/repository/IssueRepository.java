@@ -3,7 +3,6 @@ package repository;
 import domain.Issue;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 public class IssueRepository {
     private Collection<Issue> issues = new ArrayList<>();
@@ -18,20 +17,12 @@ public class IssueRepository {
     }
 
     public Collection<Issue> findAllOpen() {
-        for (Issue i : issues) {
-            if (!i.isStatus()) {
-                issues.remove(i);
-            }
-        }
+        issues.removeIf(i -> !i.isStatus());
         return issues;
     }
 
     public Collection<Issue> findAllClosed() {
-        for (Issue i : issues) {
-            if (i.isStatus()) {
-                issues.remove(i);
-            }
-        }
+        issues.removeIf(Issue::isStatus);
         return issues;
 
     }
@@ -50,18 +41,6 @@ public class IssueRepository {
                 i.setStatus(true);
             }
         }
-    }
-
-    public Predicate<Issue> getByAuthor(String author) {
-        return p -> p.getAuthor().equalsIgnoreCase(author);
-    }
-
-    public Predicate<Issue> getByLabel(String labels) {
-        return p -> p.getLabel().equalsIgnoreCase(labels);
-    }
-
-    public Predicate<Issue> getByAssignee(String assignee) {
-        return p -> p.getAssignee().equalsIgnoreCase(assignee);
     }
 
 
