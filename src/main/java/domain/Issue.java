@@ -2,22 +2,24 @@ package domain;
 
 
 import java.util.Date;
+import java.util.Set;
 
 public class Issue implements Comparable<Issue> {
     private int id;
     private String author;
-    private String label;
+    private Set<String> labels;
     private String assignee;
     private boolean status;
     private Date dateTime;
 
+
     public Issue() {
     }
 
-    public Issue(int id, String author, String label, String assignee, boolean status, Date dateTime) {
+    public Issue(int id, String author, Set<String> labels, String assignee, boolean status, Date dateTime) {
         this.id = id;
         this.author = author;
-        this.label = label;
+        this.labels = labels;
         this.assignee = assignee;
         this.status = status;
         this.dateTime = dateTime;
@@ -39,12 +41,12 @@ public class Issue implements Comparable<Issue> {
         this.author = author;
     }
 
-    public String getLabel() {
-        return label;
+    public Set<String> getLabels() {
+        return labels;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setLabels(Set<String> labels) {
+        this.labels = labels;
     }
 
     public String getAssignee() {

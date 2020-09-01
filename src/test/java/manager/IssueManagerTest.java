@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class IssueManagerTest {
     private IssueRepository repository = new IssueRepository();
     private IssueManager manager = new IssueManager(repository);
-    private Issue issue1 = new Issue(1, "Yuri", "component test kit", "Ivan", true, new Date());
-    private Issue issue2 = new Issue(2, "Yuri", "component java", "Irina", true, new Date());
-    private Issue issue3 = new Issue(3, "Petr", "type task", "Ivan", true, new Date());
-    private Issue issue4 = new Issue(4, "Petr", "type question", "Gary", false, new Date());
+    private Issue issue1 = new Issue(1, "Yuri", new HashSet<>(Arrays.asList("component test", "type task")), "Ivan", true, new Date());
+    private Issue issue2 = new Issue(2, "Yuri", new HashSet<>(Arrays.asList("component java", "type task")), "Irina", true, new Date());
+    private Issue issue3 = new Issue(3, "Petr", new HashSet<>(Arrays.asList("component kotlin", "type task")), "Ivan", true, new Date());
+    private Issue issue4 = new Issue(4, "Petr", new HashSet<>(Arrays.asList("theme build", "type task")), "Gary", false, new Date());
 
     @BeforeEach
     void setUp() {

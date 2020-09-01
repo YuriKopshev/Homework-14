@@ -44,7 +44,7 @@ public class IssueManager {
     }
 
     public Predicate<Issue> getFilterByLabel(String labels) {
-        return p -> p.getLabel().equalsIgnoreCase(labels);
+        return p -> p.getLabels().contains(labels);
     }
 
     public Predicate<Issue> getFilterByAssignee(String assignee) {
@@ -52,21 +52,6 @@ public class IssueManager {
     }
 
 
-//    public List<Issue> filterBy(List<Issue> issues, Predicate<Issue> predicate) {
-//        return issues.stream()
-//                .filter(predicate)
-//                .collect(Collectors.<Issue>toList());
-//    }
-//
-//    public Set<Issue> filterByLabels(List<Issue> issues, Predicate<Issue> predicate) {
-//        Set<Issue> filteredList = new HashSet<>();
-//        for (Issue i : issues) {
-//            if (predicate.test(i)) {
-//                filteredList.add(i);
-//            }
-//        }
-//        return filteredList;
-//    }
     public List<Issue> filterByAuthor(String author) {
         return filter(getFilterByAuthor(author));
     }
