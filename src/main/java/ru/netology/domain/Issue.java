@@ -1,4 +1,4 @@
-package domain;
+package ru.netology.domain;
 
 
 import java.util.Date;
@@ -8,7 +8,7 @@ public class Issue implements Comparable<Issue> {
     private int id;
     private String author;
     private Set<String> labels;
-    private String assignee;
+    private Set<String> assignee;
     private boolean status;
     private Date dateTime;
 
@@ -16,7 +16,7 @@ public class Issue implements Comparable<Issue> {
     public Issue() {
     }
 
-    public Issue(int id, String author, Set<String> labels, String assignee, boolean status, Date dateTime) {
+    public Issue(int id, String author, Set<String> labels, Set<String> assignee, boolean status, Date dateTime) {
         this.id = id;
         this.author = author;
         this.labels = labels;
@@ -49,11 +49,11 @@ public class Issue implements Comparable<Issue> {
         this.labels = labels;
     }
 
-    public String getAssignee() {
+    public Set<String> getAssignee() {
         return assignee;
     }
 
-    public void setAssignee(String assignee) {
+    public void setAssignee(Set<String> assignee) {
         this.assignee = assignee;
     }
 
@@ -78,5 +78,4 @@ public class Issue implements Comparable<Issue> {
     public int compareTo(Issue issue) {
         return getDateTime().compareTo(issue.getDateTime());
     }
-//    Collections.sort(myList);
 }

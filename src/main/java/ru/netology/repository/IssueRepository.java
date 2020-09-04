@@ -1,11 +1,11 @@
-package repository;
+package ru.netology.repository;
 
-import domain.Issue;
+import ru.netology.domain.Issue;
 
 import java.util.*;
 
 public class IssueRepository {
-    private Collection<Issue> issues = new ArrayList<>();
+    private List<Issue> issues = new ArrayList<>();
 
 
     public Collection<Issue> findAll() {

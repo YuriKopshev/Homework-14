@@ -1,7 +1,7 @@
-package manager;
+package ru.netology.manager;
 
-import domain.Issue;
-import repository.IssueRepository;
+import ru.netology.domain.Issue;
+import ru.netology.repository.IssueRepository;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -48,7 +48,7 @@ public class IssueManager {
     }
 
     public Predicate<Issue> getFilterByAssignee(String assignee) {
-        return p -> p.getAssignee().equalsIgnoreCase(assignee);
+        return p -> p.getAssignee().contains(assignee);
     }
 
 
@@ -69,6 +69,12 @@ public class IssueManager {
         return getAllIssues().stream()
                 .filter(predicate)
                 .collect(Collectors.<Issue>toList());
+    }
+
+    public Collection<Issue> sortByDate(){
+        List<Issue>list = new ArrayList<>(getAllIssues());
+        Collections.sort(list);
+        return list;
     }
 
 
